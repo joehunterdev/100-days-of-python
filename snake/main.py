@@ -1,155 +1,80 @@
 from turtle import Turtle, Screen
-# from functools import partial
-from random import randint
 from functools import partial
-
+from snake import Snake
+from board import Board
+from random import randint
 # Classic Snake game Challenge
 
 # TODO 1. Snake body:
 
-    #[]Defie Start pos 0
-    #[]Snake head should be one move ahead checknextmove(d1)
-    #[x]Snake body can grow in legnth
-    #[x]Snake can body move
-    #[x] Numerical array ?/ pop push ? / tupples
+# [x]Snake head should be one move ahead checknextmove(d1)
+# [x]Snake body can grow in legnth
+# [x]Snake can body move
+# [x] Numerical array ?/ pop push ? / tupples
 
 # TODO 2. Move Snake:
 #       [x]Snake moves forward automatically
 #       [x]Snake must continue on same trajectory if not controlled
 #       [x]Snake body coords must appear and disappaer from arr
-#       [ ]Dont allow snake to reverse direction on itself
+#       [x]Dont allow snake to reverse direction on itself
+#       [] Extend turtle to allow for movement actions within class
 #
+# TODO 3. [x] Control Snake:
 #
+# TODO 4. [x] Detect Colision with food
 #
-# TODO 3. Control Snake:
-#
-# TODO 4. Detect Colision with food
-#     if snake head is in wanted co-ord
-#       add to snake_body->legnth (adding to tail ?)
-
-# TODO 5. Create Score board:
-#   Total of foods eaten
+# TODO 5.[x] Create Score board:
+#   [x] Total of foods eaten
 #   [] Speed would increase difficulty
 
-# TODO 6. Detect collision with wall:
-#     while is_allowed(snake_head,coords) display score
-#         else exit
+# TODO 6.[x] Detect collision with wall:
+#
 # TODO 7. Detect collision with tail:
-#     exit display score
-#     while is_allowed(snake_head,coord) display score
-#         else exit
+#
 # TODO 9. Bug:
 #     [] init bug splitting lines to draw snake
+#     [] last food not not disapearing
+#     [] fix issue with piece movement 
 
-
-class Snake:
-
-    def __init__(self):
-
-      self.body = [(0, 0), (30, 0), (60, 0),  (90, 0), (110, 0)]
-      self.legnth = 3
-      self.head = self.body[-1]
-      self.speed = 1
-      self.direction = "Up"
-
-    def move(self,key):
-
-        if key == "Up" and self.direction != "Down":
-            self.body.append((self.body[-1][0],self.body[-1][1]+10))
-        # else:
-        #     self.body.append((self.body[-1][0],self.body[-1][1]-10))
-        #     return
-        if key == "Down" and self.direction != "Up":
-            self.body.append((self.body[-1][0],self.body[-1][1]-10))
-        if key == "Left" and self.direction != "Right":
-            self.body.append((self.body[-1][0] - 10,self.body[-1][1]))
-        if key == "Right" and self.direction != "Left":
-            self.body.append((self.body[-1][0] + 10,self.body[-1][1]))
-        # else:
-        #     self.body.append((self.body[-1][0] + 10, self.body[-1][1]))
-        self.body.pop(0)
-
-    def grow_snake(self):
-        self.body.append(self.head)
-        pass
-
-    def set_direction(self,key):
-        self.direction = key
-    # def grow_snake(self):
-    #     self.body.append(self.head)
-    #     pass
-
-    def draw_snake(self):
-        pass
-
-class Board:
-
-    def __init__(self,head,body):
-
-        self.width = 600
-        self.height = 600
-        self.coord = (0,0)
-        self.walls = (self.width -1,self.height -1)
-        self.food = randint(1,4)
-        self.score = 0
-
-    # def is_allowed(self):
-    #
-    #         # if self.is_wall() == None | self.is_body() == None:
-    #         #
-    #         # return True
-
-    # def is_wall(self):
-    #
-    #         # if head !in_array()
-    #         # pos_walls =  (self.width -1,self.height -1)
-    #         # neg_walls =  (-abs(self.width) + 1, -abs(self.width) + 1)
-    #
-    #    return True
-
-    def is_food(self):
-       return True
-
-    def is_body(self):
-       pass
+# TODO 9. Bug:
 
 
 # Config
 sc = Screen()
 sn = Snake()
-
 bd = Board(sn.head,sn.body)
-sc.screensize(bd.width,bd.height)
-# print(f"Score is :{bd.score}")
-sc.title("Snake Game score is: ")
-turtles = [Turtle() for n in range(sn.legnth)]
+sc.setup(bd.width,bd.height)
 
-# add to list of tuples
-# sn.body.append((11,22))
 
 control = False
 n = 0
 
-colors = ["green","orange","blue","red","purple"]
+colors = ["green","orange","blue","red","purple","yellow","grey","pink","green","orange","blue","red","purple","yellow","grey","pink","green","orange","blue","red","purple","yellow","grey","pink"]
 
-# def move():
-#
-#
-# def rotate(deg):
-#
-#      turtles[i].right(deg)
-#      turtles[i].fd(10)
-#      print(f"moving {10}")
+#init list of snake postions
+turtles = [Turtle() for n in range(len(sn.body))]
 
-def reset():
-    sc.reset()
+while bd.in_game:
 
-while n < 10:
+    sc.title(f"Snake Game score is: {bd.score}")
+
+    # Add Food
+    f = Turtle()
+    f.hideturtle()
+    f.penup()
+    f.setposition(bd.food)
+    print(f"  food coords {bd.food}")
+    f.shape("square")
+    f.shapesize(1)
+    f.color(colors[randint(1,4)])
+    id = f.stamp()
+
 
     i = 0
-
+    # print a list of objects
     for turtle in turtles:
 
+        turtles[i].speed(10)
         turtles[i].pendown()
         turtles[i].shapesize(1)
         turtle.shape("square")
@@ -159,12 +84,41 @@ while n < 10:
         sc.onkey(partial(sn.set_direction, "Down"), "Down")
         sc.onkey(partial(sn.set_direction, "Left"), "Left")
         sc.onkey(partial(sn.set_direction, "Right"), "Right")
+        sc.onkey(partial(bd.reset, sc), "space")
 
-        sn.move(sn.direction)
+        head = sn.get_next(sn.direction)
 
+        if bd.is_back(head):
+
+          print(f"cant move back: continuing {sn.directions[-1]} as to last record in {sn.directions}")
+          sn.move(sn.directions[-2])
+
+        elif bd.is_food(head):
+          bd.score = bd.score +1
+          print(f"You eat some food")
+          turtles.append(Turtle())
+          bd.generate_food()
+          f = Turtle()
+          f.hideturtle()
+        #   f.clearstamp(id)
+        #   f.clear()
+        #   bd.food = (70 * randint(1,3), -70 * randint(1,3) )
+          sn.grow(head)
+          sn.move(sn.direction)
+
+        elif bd.is_wall(head):
+           print(f"You hit the wall")
+           bd.in_game = False
+
+        elif bd.is_body(head):
+           print(f"You cant eat yourself")
+           bd.in_game = False
+        else:
+            sn.move(sn.direction)
+
+       # ultimatley we place here
         turtles[i].setpos(sn.body[i])
-        print(f" head coord \n {sn.body[i]}")
-        # turtles[i].setpos(turtles[i].pos())
+        print(f" head coord \n {bd.head}")
         turtles[i].stamp()
         sc.listen()
 
@@ -173,6 +127,10 @@ while n < 10:
         # turtles[i].penup()
         turtle.clear()
 
-n +=1
+    # while
 
+
+
+
+n +=1
 sc.exitonclick()
