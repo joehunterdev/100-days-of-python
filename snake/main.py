@@ -3,41 +3,6 @@ from functools import partial
 from snake import Snake
 from board import Board
 from random import randint
-# Classic Snake game Challenge
-
-# TODO 1. Snake body:
-
-# [x]Snake head should be one move ahead checknextmove(d1)
-# [x]Snake body can grow in legnth
-# [x]Snake can body move
-# [x] Numerical array ?/ pop push ? / tupples
-
-# TODO 2. Move Snake:
-#       [x]Snake moves forward automatically
-#       [x]Snake must continue on same trajectory if not controlled
-#       [x]Snake body coords must appear and disappaer from arr
-#       [x]Dont allow snake to reverse direction on itself
-#       [] Extend turtle to allow for movement actions within class
-#
-# TODO 3. [x] Control Snake:
-#
-# TODO 4. [x] Detect Colision with food
-#
-# TODO 5.[x] Create Score board:
-#   [x] Total of foods eaten
-#   [] Speed would increase difficulty
-
-# TODO 6.[x] Detect collision with wall:
-#
-# TODO 7. Detect collision with tail:
-#
-# TODO 9. Bug:
-#     [] init bug splitting lines to draw snake
-#     [] last food not not disapearing
-#     [] fix issue with piece movement 
-
-# TODO 9. Bug:
-
 
 # Config
 sc = Screen()
