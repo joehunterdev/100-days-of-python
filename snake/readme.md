@@ -1,4 +1,6 @@
-# Classic Snake game Challenge
+# Classic Snake Game 
+
+## Todos
 
 - ## 1. Snake body:
   - [x] Snake head should be one move ahead checknextmove(d1)
@@ -7,12 +9,11 @@
   - [x] Numerical array ?/ pop push ? / tupples
 
 - ## 2. Move Snake:
-  - [x]Snake moves forward automatically
-  - [x]Snake must continue on same trajectory if not controlled
-  - [x]Snake body coords must appear and disappaer from arr
-  - [x]Dont allow snake to reverse direction on itself
-  - [] Extend turtle to allow for movement actions within class
--
+  - [x] Snake moves forward automatically
+  - [x] Snake must continue on same trajectory if not controlled
+  - [x] Snake body coords must appear and disappaer from arr
+  - [x] Dont allow snake to reverse direction on itself
+
 - ## 3. Control Snake:
   - [x] Move using arrows
   - [x] Snake must continue on same trajectory if not controlled
@@ -36,3 +37,7 @@
   - [] init bug splitting lines to draw snake
   - [] last food not not disapearing
   - [] fix issue with precision movement
+
+## 10. Refactor:
+  - [] Snake exends Turtle() for visual debt
+  - Screen update, Array Splice, turtle.Tracer
