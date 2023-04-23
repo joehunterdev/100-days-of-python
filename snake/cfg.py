@@ -1,0 +1,9 @@
+# Const
+WIDTH = 600
+HEIGHT = 600
+PIECE_SIZE = 20
+INIT_POSITIONS = [(0, 0),(-20, 0),(-40, 0)]
+HEAD = (120, 0)
+FOOD = (180,0)
+BG_COLOR = "Black"
+IN_GAME = True
