@@ -4,14 +4,14 @@ class Snake:
 
     def __init__(self):
 
-      self.body = [(0, 0),(10, 0),(20, 0),(30, 0),(40, 0),(50, 0)]
+      self.body = [(0, 0),(20, 0),(40, 0),(60, 0),(80, 0),(100, 0)]
       self.legnth = len(self.body)
     #    the next square
       self.head = ()
       self.speed = 1
       self.direction = "Right"
       self.directions = ["Right"]
-      self.size = 10
+      self.size = 20
 
     def move(self,key):
  
