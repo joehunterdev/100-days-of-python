@@ -4,7 +4,7 @@ from turtle import Turtle, Screen
 
 class Bat(Turtle):
 
-    def __init__(self,x,y):
+    def __init__(self,x,y,heading = 90):
 
         super().__init__("square")
         
@@ -17,7 +17,7 @@ class Bat(Turtle):
         self.sety(y)
         self.penup()
         self.color("white")
-        self.setheading(90)
+        self.setheading(heading)
         self.turtlesize(BAT_WIDTH, BAT_HEIGHT)
         # self.capture(up_key,down_key)
         

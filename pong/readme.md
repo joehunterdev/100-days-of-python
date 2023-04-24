@@ -35,7 +35,7 @@
     - [x] Init Bat (Left||Right)
       - [x] Set Side ()
       - [x] Internal Screen object
-      - [ ] Screen object init in main
+      - [x] Screen object init in main
       - ~~[] Keyboard btn init ("Left","w","s") ?~~
   - 3. Duplicate Paddle
   - 4. Create ball and make it move
@@ -46,4 +46,5 @@
 
 ## Bugs
   - [] Issue with key movements interrupting  each other
-    - [] Screen Init, move screen out of class ? 
+  ~~~- [] Screen Init, move screen out of class ?~~~
+    - looks like this could be keypress event related
