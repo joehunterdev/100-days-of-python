@@ -47,4 +47,5 @@
 ## Bugs
   - [] Issue with key movements interrupting  each other
   ~~~- [] Screen Init, move screen out of class ?~~~
-    - looks like this could be keypress event related
+    - [] looks like this could be keypress event 
+    - [x] Test alt go_up methods
