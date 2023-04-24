@@ -31,10 +31,19 @@
     - [x] Basic Cfg params
   - 2. Create & Move a bat
     - [x] Gist
-    - [] Bat Class & Init
+    - [x] Bat Class & 
+    - [x] Init Bat (Left||Right)
+      - [x] Set Side ()
+      - [x] Internal Screen object
+      - [ ] Screen object init in main
+      - ~~[] Keyboard btn init ("Left","w","s") ?~~
   - 3. Duplicate Paddle
   - 4. Create ball and make it move
   - 5. Detect colision with wall and bounce
   - 6. Detect collision with paddle
   - 7. Detect Miss
   - 8. Keep Score
+
+## Bugs
+  - [] Issue with key movements interrupting  each other
+    - [] Screen Init, move screen out of class ? 
