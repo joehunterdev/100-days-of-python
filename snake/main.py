@@ -1,101 +1,54 @@
-from turtle import Turtle, Screen
-from functools import partial
+from turtle import Screen
+import time
+from cfg import *
 from snake import Snake
 from board import Board
-from random import randint
+from food import Food
+# Todo:  Move to board
+screen = Screen()
+screen.setup(width=WIDTH,height=HEIGHT)
+screen.bgcolor(BG_COLOR)
+snake = Snake()
 
-# Config
-sc = Screen()
-sn = Snake()
-bd = Board(sn.head,sn.body)
-sc.setup(bd.width,bd.height)
+food = Food()
+board = Board()
+# screen.tracer(1,1)
+while IN_GAME:
+    # time.sleep(0.1)
+ 
+    # update after segments have moved
+    snake.move()
+    screen.title(f"Snake Game score is : {board.score}")
+    board.add_board(f"Score {board.score}",BORDERS)
 
+    # print(f"Head->{snake.head.position()}")
+    
+    if snake.head.position() == food.position():
+        snake.extend()
+        board.add_board(f"Eating some food",120)
+        food.random_pos()        
+        board.add_score(1)
+    elif snake.head.xcor() >= (BORDERS) or snake.head.xcor() <= -abs(BORDERS):
+        board.add_board("You hit the wall side",100)
+        # board.is_wall()
+        IN_GAME = False
 
-control = False
-n = 0
+    elif snake.head.ycor() >= BORDERS or snake.head.ycor() <= -abs(BORDERS) :
+        board.add_board("You hit the top/bottom wall",100)
+        # board.is_wall()
+        IN_GAME = False
 
-colors = ["green","orange","blue","red","purple","yellow","grey","pink","green","orange","blue","red","purple","yellow","grey","pink","green","orange","blue","red","purple","yellow","grey","pink"]
+    positions = [snake.position() for snake in snake.pieces]   
+ 
+    if snake.next_pos() in positions:
+        board.add_board("You cant eat Yourself " +snake.next_pos(positions),100)
+        IN_GAME = False
+  
+    screen.update()
 
-#init list of snake postions
-turtles = [Turtle() for n in range(len(sn.body))]
-
-while bd.in_game:
-
-    sc.title(f"Snake Game score is: {bd.score}")
-
-    # Add Food
-    f = Turtle()
-    f.hideturtle()
-    f.penup()
-    f.setposition(bd.food)
-    print(f"  food coords {bd.food}")
-    f.shape("square")
-    f.shapesize(1)
-    f.color(colors[randint(1,4)])
-    id = f.stamp()
-
-
-    i = 0
-    # print a list of objects
-    for turtle in turtles:
-
-        turtles[i].speed(10)
-        turtles[i].pendown()
-        turtles[i].shapesize(1)
-        turtle.shape("square")
-        turtles[i].color(colors[i])
-
-        sc.onkey(partial(sn.set_direction, "Up"), "Up")
-        sc.onkey(partial(sn.set_direction, "Down"), "Down")
-        sc.onkey(partial(sn.set_direction, "Left"), "Left")
-        sc.onkey(partial(sn.set_direction, "Right"), "Right")
-        sc.onkey(partial(bd.reset, sc), "space")
-
-        head = sn.get_next(sn.direction)
-
-        if bd.is_back(head):
-
-          print(f"cant move back: continuing {sn.directions[-1]} as to last record in {sn.directions}")
-          sn.move(sn.directions[-2])
-
-        elif bd.is_food(head):
-          bd.score = bd.score +1
-          print(f"You eat some food")
-          turtles.append(Turtle())
-          bd.generate_food()
-          f = Turtle()
-          f.hideturtle()
-        #   f.clearstamp(id)
-        #   f.clear()
-        #   bd.food = (70 * randint(1,3), -70 * randint(1,3) )
-          sn.grow(head)
-          sn.move(sn.direction)
-
-        elif bd.is_wall(head):
-           print(f"You hit the wall")
-           bd.in_game = False
-
-        elif bd.is_body(head):
-           print(f"You cant eat yourself")
-           bd.in_game = False
-        else:
-            sn.move(sn.direction)
-
-       # ultimatley we place here
-        turtles[i].setpos(sn.body[i])
-        print(f" head coord \n {bd.head}")
-        turtles[i].stamp()
-        sc.listen()
-
-        i += 1
-        print(f"  body coords {sn.body}")
-        # turtles[i].penup()
-        turtle.clear()
-
-    # while
-
-
-
-
-n +=1
-sc.exitonclick()
+else:
+   board.add_board(f"Game Over",200)
+   time.sleep(4)
+   IN_GAME = True
+   screen.reset()
+screen.exitonclick()

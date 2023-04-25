@@ -1,49 +1,33 @@
+from turtle import Turtle,Screen
 
-from random import randint
-from dotenv import load_dotenv
+class Board(Turtle):
 
-# Rules annd
-class Board:
-
-    def __init__(self,head,body):
-
-        self.width = 600
-        self.height = 600
-        self.head = ()
-        self.walls = (self.width -1,self.height -1)
-        # self.food = (randint(-abs(self.width % 2),299),randint(-299,299))
-        self.score = 0
-        self.body = body
-        self.in_game = True
-        self.size = 20
-        self.food = (70,00)
-
-    def is_wall(self,head):
-      #  or head[0] > -abs(self.walls[1])
-       if head[0] > (self.width -self.size) or head[0] < -abs(self.width +self.size):
-         return True
-
-    def is_food(self,head):
-     if head == self.food:
-       return True
-
-    def is_back(self,head):
-
-       if head in self.body:
-         print(f"ilegal from {self.body[-1]} to {head}")
-         return True
-
-    def is_body(self,head):
-       if head in self.body:
-         return True
+    def __init__(self):
+      
+      super().__init__()
+      self.score = 0
+      self.penup()
     
-    def in_game(self):
-       return True
+    def add_board(self,text,position):
+      
+      self.setpos(0,-position)
+      style = ('System', 20, 'italic')
+      self.color("white")
+      self.write(text, font=style, align='center')
 
-    def generate_food(self):
-      self.food = (self.size * randint(1,3), -self.size * randint(1,3) )
+   
+    def add_score(self,points = 1):
+      self.score += points
+      self.clear()
+
+      # self.clear()
+         
+    # def in_game(self):
+    #   return True
     
-    def reset(self,object):
-        self.in_game = False
-        object.reset()
+    # def reset(self,points = 1):
+    #     time.sleep(1)
+        
+   
+    
 

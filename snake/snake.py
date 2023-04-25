@@ -1,7 +1,10 @@
-from dotenv import load_dotenv
+from turtle import Turtle, Screen
+from cfg import *
+from functools import partial
+ 
 
 class Snake:
-
+    
     def __init__(self):
 
       self.body = [(0, 0),(20, 0),(40, 0),(60, 0),(80, 0),(100, 0)]
@@ -33,49 +36,82 @@ class Snake:
 
                 head = (self.body[-1][0] + self.size,self.body[-1][1])       
         
-        self.body.append(head)
-        self.body.pop(0)
+        self.pieces = []
+        self.create()
+        self.head = self.pieces[0]
+        # self.capture()
 
-    def grow(self,head):
+    def create(self):   
+
+        for postion in INIT_POSITIONS:
+            # new object
+            new_piece = Turtle("square")
+            new_piece.penup()
+            new_piece.color("white")
+            new_piece.goto(postion)           
+
+            # add new piece obj with coords
+            self.pieces.append(new_piece)
+            
+    def extend(self):
+        self.grow(self.pieces[-1].position())
         
-        self.body.append(head)
-        # self.move(direction)
+    def move(self):
+            self.capture()
+            # print(f"Pieces {self.pieces}")
+            #Get 2nd to last piece and go backwards
+            for piece in range(len(self.pieces) - 1, 0, -1):
+                    
+                    #Reposition piece based on the previous
+                    self.pieces[piece].goto(self.pieces[piece - 1].xcor(),self.pieces[piece - 1].ycor())
+            
+            #Apply Movement         
+            self.head.forward(PIECE_SIZE)
+            self.head.speed(10)
 
-
-    def set_direction(self,key):
-       
-       self.direction = key
-       self.directions.append(key)
     
-    def get_next(self,key):
- 
-        match key:
+    def heading(self,deg):
+    
+        # print(f"Cur head {self.head.heading()} + Proposed {deg}  ")
+        # print(f"Oposite Angle: {(int(deg) + 180) % 360} ")
+        self.head.hideturtle()
+        if self.head.heading() != (int(deg) + 180) % 360: 
+            # self.head.penup()
+            self.head.setheading(deg)
 
-            case "Up":
+        # else: 
+            
+        #     print(f"Cant reverse direction")
 
-                head = (self.body[-1][0],self.body[-1][1]+10)
-
-            case "Down":
-
-                head = (self.body[-1][0],self.body[-1][1]-10)
-
-            case "Left":
-
-                head = (self.body[-1][0]-10,self.body[-1][1])
-
-            case "Right":
-
-                head = (self.body[-1][0] + 10,self.body[-1][1])       
+    def capture(self):
         
-        self.head = head
-        return head
-       
-    #    if key == "Up"  and self.direction == "Down":
-    #      self.direction = "Down"
-    #    else:
-    #      self.direction = "Up"
-    #    #could use previous coords here
-       
-       
-    def draw_snake(self):
-        pass
+        screen = Screen()
+
+        screen.onkey(partial(self.heading, 90),"Up")
+        screen.onkey(partial(self.heading, 270),"Down")
+        screen.onkey(partial(self.heading, 180),"Left")
+        screen.onkey(partial(self.heading, 0),"Right")
+
+        screen.listen()
+    
+    def grow(self,pos):
+    
+        add_piece = Turtle("square")
+        add_piece.color("white")
+        add_piece.penup()
+        add_piece.setpos(pos)
+        self.pieces.append(add_piece)
+
+    def next_pos(self):
+        
+       # partial(self.heading, 90)
+        next_piece = Turtle("square")
+        next_piece.hideturtle()
+        next_piece.color("grey")
+        next_piece.penup()
+        next_piece.setheading(self.head.heading())
+        next_piece.goto(self.head.position())
+        next_piece.forward(PIECE_SIZE)
+        
+
+        return next_piece.position()
