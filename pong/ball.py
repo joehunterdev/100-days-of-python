@@ -13,17 +13,20 @@ class Ball(Turtle):
         self.penup()
         self.x_move = 10
         self.y_move = 10
-        self.left_score = 0
-        self.right_score = 0
-
-        self.y_move = 10
-
+        # self.left_score = 0
+        # self.right_score = 0
         self.color("white")
         # self.move_go()
         self.speed(1)
 
-    def move_fd(self,left_bat,right_bat):
+    def move(self):
 
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x,new_y)
+
+
+    def move_fd(self,left_bat,right_bat):
 
         if self.distance(self.xcor(),MAX_Y) < BALL_SIZE:
             print(f"Roof")
@@ -47,7 +50,7 @@ class Ball(Turtle):
         if self.distance(MAX_X,self.ycor()) < 2:
             print(f"Right net")
             self.setposition(0,0)
- 
+
         print(f"Pos {self.position()}")
         print(f"L Bat Pos {left_bat.position()}")
 
@@ -58,9 +61,9 @@ class Ball(Turtle):
 
            if self.distance(left_bat.xcor(),left_bat.ycor() + n) < BAT_WIDTH:
               print(f"Left Bat")
-            #   self.left_score += 1
+              self.left_score += 1
               self.rebound_x()
-              
+
         print(f"\n")
 
         if self.distance(self.xcor(),MIN_Y) < BALL_SIZE:

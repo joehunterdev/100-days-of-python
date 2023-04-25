@@ -37,6 +37,7 @@
       - [x] Internal Screen object
       - [x] Screen object init in main
       - ~~[] Keyboard btn init ("Left","w","s") ?~~
+      - [x] Recactor logic in to main.py
   - 3. [x] Duplicate Paddle
   - 4. [x] Create ball and make it move
   - 5. [x] Detect colision with wall and bounce
