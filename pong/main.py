@@ -17,73 +17,46 @@ left_bat.controls("w","s")
 right_bat  = Bat(320,0)
 right_bat.controls("Up","Down")
 
-ball = Ball()  
+ball   = Ball()
+left_board  = Board(-80,0)
+right_board = Board(80,0)
 
-
-
-
-# screen.listen()
-# screen.onkeypress(left_bat.up,"w")
-# screen.onkeypress(left_bat.down,"s")
-# screen.onkeypress(right_bat.up,"Up")
-# screen.onkeypress(right_bat.down,"Down") 
-
-# left_score  = Board(-50,250,30)  
-# right_score = Board(50,250,30) 
-
+i = 1
 while IN_GAME:
-      
-      # ball.forward(5)
-      ball.move()  
-   
-      if ball.distance(ball.xcor(),MAX_Y) < BALL_SIZE:
-         print(f"Roof")
-         ball.rebound_y()
 
-      # if ball.distance(right_bat) < BAT_WIDTH:
-      #     ball.reboundx()
-      #     print(f"Right Bat")
+      screen.update()
+      ball.move()
+
+      if ball.distance(ball.xcor(),MAX_Y) < BALL_SIZE or  ball.distance(ball.xcor(),MIN_Y) < BALL_SIZE:
+         print(f"Roof / Ceil")
+         ball.rebound_y()
 
       #Loop Through positions
       for n in range(-30,50,10):
-         print(f"{(right_bat.xcor(),right_bat.ycor() + n)}")
 
          if ball.distance(right_bat.xcor(),right_bat.ycor() + n) < BAT_WIDTH:
             print(f"Right Bat")
-         #   ball.right_score += 1
             ball.rebound_x()
-      print(f"\n")
-
-
-      if ball.distance(MAX_X,ball.ycor()) < 2:
-         print(f"Right net")
-         ball.setposition(0,0)
-
-      print(f"Pos {ball.position()}")
-      print(f"L Bat Pos {left_bat.position()}")
-
-      #Loop Through positions
-      for n in range(-30,50,10):
-
-         print(f"{(left_bat.xcor(),left_bat.ycor() + n)}")
+            i +=1
+            ball.speed(i)
 
          if ball.distance(left_bat.xcor(),left_bat.ycor() + n) < BAT_WIDTH:
             print(f"Left Bat")
-            # ball.left_score += 1
             ball.rebound_x()
-            
-      print(f"\n")
+            i +=1
+            ball.speed(i)
 
-      if ball.distance(ball.xcor(),MIN_Y) < BALL_SIZE:
-         print(f"Bottom")
-         ball.rebound_y()
+      if ball.distance(MAX_X,ball.ycor()) < 2:
+            print(f"Right net")
+            ball.rebound_x()
+            left_board.update_score(1)
 
       if ball.distance(MIN_X,ball.ycor()) < 2:
-         print(f"Left net")
-         ball.reboundx()
-         
-screen.update() 
-   
+            print(f"Left net")
+            ball.rebound_x()
+            right_board.update_score(1)
+  
+
 screen.exitonclick()
 
 

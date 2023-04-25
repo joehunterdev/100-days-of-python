@@ -1,30 +1,6 @@
 # Classic Pong Game
 
-## Components 
-
-    - [] Bat
-      - bat 1 / 2
-    - [] Scoreboard
-      - player 1 / 2
-    - [] Ball
-      - super()
-      - speed
-      - move
-    - [] Half Way line
-      - super()
-
-  - [] main loop conditionals
-    - [] Wall
-    - [] Net
-    - [] ? Count bat hits ?
-
-# Methods
-    Reset Ball
-    Calculate tangent
-    Speed up ball
-
-
-## Steps:
+## Todo:
 
   - 1. Create Screen
     - [x] 800 x 600
@@ -34,19 +10,46 @@
     - [x] Bat Class & 
     - [x] Init Bat (Left||Right)
       - [x] Set Side ()
-      - [x] Internal Screen object
-      - [x] Screen object init in main
-      - ~~[] Keyboard btn init ("Left","w","s") ?~~
-      - [x] Recactor logic in to main.py
+      - [0] Bug 1
+        - [x] Screen handling in class
+        - [x] Screen object init in main
+        - ~~[] Keyboard btn init ("Left","w","s") ?~~
+      - [x] Refactor logic in to main.py
   - 3. [x] Duplicate Paddle
   - 4. [x] Create ball and make it move
   - 5. [x] Detect colision with wall and bounce
   - 6. [x] Detect collision with paddle
   - 7. [x] Detect Net
-  - 8. [] Keep Score
+  - 8. [x] Keep Score
+  - 9. [x] Speed Up Ball
 
 ## Bugs
-  - [] Issue with key movements interrupting  each other
-  ~~~- [] Screen Init, move screen out of class ?~~~
-    - [] looks like this could be keypress event 
-    - [x] Test alt go_up methods
+  - 1. [] Issue with key movements interrupting  each other
+        - [] looks like this could be keypress event 
+        - [x] Test alt go_up methods
+ 
+## Outline 
+
+    - [] Bat
+      - bat 1 / 2
+    - [] Board
+      - xchor score
+    - [] Ball
+      - super()
+      - speed
+      - move
+    - [] ~~Half Way line~~
+      - super()
+
+  - [] main loop conditionals
+    - [] Wall
+    - [] Net
+    - [] ? Count bat hits ?
+
+## Methods
+    ~~Reset Ball~~
+    rebound:
+       invert y pos of wall
+       invert x pos of bat
+          
+ 
