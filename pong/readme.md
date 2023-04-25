@@ -37,12 +37,12 @@
       - [x] Internal Screen object
       - [x] Screen object init in main
       - ~~[] Keyboard btn init ("Left","w","s") ?~~
-  - 3. Duplicate Paddle
-  - 4. Create ball and make it move
-  - 5. Detect colision with wall and bounce
-  - 6. Detect collision with paddle
-  - 7. Detect Miss
-  - 8. Keep Score
+  - 3. [x] Duplicate Paddle
+  - 4. [x] Create ball and make it move
+  - 5. [x] Detect colision with wall and bounce
+  - 6. [x] Detect collision with paddle
+  - 7. [x] Detect Net
+  - 8. [] Keep Score
 
 ## Bugs
   - [] Issue with key movements interrupting  each other

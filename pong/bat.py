@@ -52,12 +52,11 @@ class Bat(Turtle):
         Move Bat Down
     """
     def down(self):
-        print("downin")
         if self.distance(self.xcor(), MIN_Y) > BAT_HEIGHT:
             self.backward(10)
             
     """
-        Move Bat Up
+        Move Bat Up Other
     """
     def upb(self):
         new_y = self.ycor() + 20
@@ -69,7 +68,7 @@ class Bat(Turtle):
         #     print(f"Bat hit ceiling, distance to ceil {self.distance(350,MAX_Y)}")
    
     """
-        Move Bat Down
+        Move Bat Down Other
     """
     def downb(self):
         new_y = self.ycor() - 20
