@@ -4,7 +4,7 @@ from turtle import Turtle, Screen
 
 class Bat(Turtle):
 
-    def __init__(self,x,y):
+    def __init__(self,x,y,heading = 90):
 
         super().__init__("square")
         
@@ -17,9 +17,8 @@ class Bat(Turtle):
         self.sety(y)
         self.penup()
         self.color("white")
-        self.setheading(90)
+        self.setheading(heading)
         self.turtlesize(BAT_WIDTH, BAT_HEIGHT)
-        # self.capture(up_key,down_key)
         
     """
          Set Side Specifics   
@@ -30,14 +29,8 @@ class Bat(Turtle):
 
             case ("Left"):
                 self.setx(int(-abs(WIDTH / 2)))
-                # self.up_key = "w"
-                # self.down_key = "s"
-
             case ("Right"):
                 self.setx((WIDTH / 2))
-                # self.up_key = "Up"
-                # self.down_key = "Down"
-
     """
         Move Bat Up
     """
@@ -52,7 +45,6 @@ class Bat(Turtle):
         Move Bat Down
     """
     def down(self):
-        print("downin")
         if self.distance(self.xcor(), MIN_Y) > BAT_HEIGHT:
             self.backward(10)
 
@@ -60,7 +52,7 @@ class Bat(Turtle):
         Capture Key Movement
     """
     def capture(self):
-        
+
         self.screen.listen()
         self.screen.onkeypress(self.up,self.up_key)
         self.screen.onkeypress(self.down,self.down_key)
