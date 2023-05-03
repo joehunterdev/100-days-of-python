@@ -1,0 +1,11 @@
+WIDTH: int = 800
+HEIGHT: int = 600
+BG_COLOR: str = "white"
+IN_GAME: bool = True
+BORDER_WIDTH: int = 5
+MAX_Y: int = round((HEIGHT / 2) - BORDER_WIDTH )
+MIN_Y: int = round(-abs((HEIGHT / 2)  - BORDER_WIDTH ) )
+MAX_X: int = round((WIDTH / 2) - BORDER_WIDTH )
+MIN_X: int = round(-abs((WIDTH / 2)  + BORDER_WIDTH ) )
+PLAYER_SIZE: int = 2
+COLORS: list = ["red","green","purple","pink","green","orange","blue"]
