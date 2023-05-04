@@ -4,6 +4,7 @@ from cfg import *
 from snake import Snake
 from board import Board
 from food import Food
+
 # Todo:  Move to board
 screen = Screen()
 screen.setup(width=WIDTH,height=HEIGHT)

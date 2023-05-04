@@ -6,35 +6,6 @@ from functools import partial
 class Snake:
     
     def __init__(self):
-
-      self.body = [(0, 0),(20, 0),(40, 0),(60, 0),(80, 0),(100, 0)]
-      self.legnth = len(self.body)
-    #    the next square
-      self.head = ()
-      self.speed = 1
-      self.direction = "Right"
-      self.directions = ["Right"]
-      self.size = 20
-
-    def move(self,key):
- 
-        match key:
-
-            case "Up":
-
-                head = (self.body[-1][0],self.body[-1][1]+self.size)
-
-            case "Down":
-
-                head = (self.body[-1][0],self.body[-1][1]-self.size)
-
-            case "Left":
-
-                head = (self.body[-1][0]-self.size,self.body[-1][1])
-
-            case "Right":
-
-                head = (self.body[-1][0] + self.size,self.body[-1][1])       
         
         self.pieces = []
         self.create()

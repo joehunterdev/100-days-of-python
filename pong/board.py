@@ -8,9 +8,7 @@ class Board(Turtle):
         
         self.hideturtle()
         self.penup()
-        
         self.color('white')
-
         self.style = ('Arial', 30, 'italic')
         self.score = score
         self.xpos = x
