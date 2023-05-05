@@ -38,7 +38,7 @@ class Snake:
             
             #Apply Movement         
             self.head.forward(PIECE_SIZE)
-            self.head.speed(10)
+            self.head.speed(SPEED)
 
     
     def heading(self,deg):
@@ -82,7 +82,12 @@ class Snake:
         next_piece.penup()
         next_piece.setheading(self.head.heading())
         next_piece.goto(self.head.position())
-        next_piece.forward(PIECE_SIZE)
-        
-
+        next_piece.forward(PIECE_SIZE)      
         return next_piece.position()
+    
+    def restart(self):
+        # self.screen.reset()
+        self.pieces = []
+        self.pieces = INIT_POSITIONS
+        self.create()
+        

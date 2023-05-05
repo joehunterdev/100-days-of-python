@@ -15,5 +15,8 @@ class Food(Turtle):
         # self.create()
 
     def random_pos(self):
-
         self.goto(randint(1,11)*20,randint(1,11)*20)
+        
+    def debug_pos(self):
+        new_x = self.ycor() + 20
+        self.goto(new_x,0)
