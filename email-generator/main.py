@@ -27,7 +27,8 @@ with open(CONTACTS_FOLDER+"invited.csv", newline='\n') as csvfile:
         print(data[0])
         mapping = [('[first_name]', data[0]),('[email]',data[1]),('[job]', data[2])]
         export_template(data[0]+".html",generate_template("basic.html",mapping))
-        
+
+## Better to use pandas
 
 
 
