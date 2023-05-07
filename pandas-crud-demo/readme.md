@@ -31,3 +31,46 @@ Notes
   - [] Helpers 
     - [] Load CSV, Save CSV, Get Difference, Paginate
     - [] Get row id
+  - [] Column handling
+  - [] Saving 
+    - [] Resource close ?
+    - [] Use of a nd w flags
+
+```
+   ## Paths
+    print(image_path("spain"))
+    print(csv_path("spain"))
+
+    # Read
+
+    ## All
+    # csv = pandas.read_csv(csv_path("spain"))
+    # print(f"Type: {type(print(csv))}" )
+    # df = pandas.DataFrame(data = csv)
+
+    ## Single Row
+    result = df.iloc[[0]]
+    print(f"Result: {result}" )
+
+
+    ## Get Id where row
+    row = results_where
+    index = row.index.tolist()
+
+    print(f"Index from row: {index}")
+
+    ## Create row as list
+
+
+    # df = pandas.concat([new_row_obj,df.loc[:]]).reset_index(drop=True)
+
+    ##,ignore_index = True
+    print(f"Updated: {df}" )
+    test_csv_path = csv_path("spain").replace("coords", "coords-2")
+
+
+    Likely you will not need to store the index=False
+    df.to_csv(csv_path("spain"), encoding='utf-8', index=False)
+    
+```
+ 

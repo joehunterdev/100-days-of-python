@@ -4,7 +4,7 @@ from cfg import *
 
 screen = turtle.Screen()
 screen.title(f"Provincias:" )
-image = PATH+"\game\\spain\\"+"map.gif"
+image = PATH+"\game\\spain\\"+"spain.gif"
 screen.addshape(image)
 turtle.shape(image)
 columns = ["state","x","y"]
