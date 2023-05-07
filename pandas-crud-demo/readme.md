@@ -21,11 +21,13 @@ Notes
   > Interesting to setup a working Pandas csv db abstraction layer using oop
   
   - [] Create Row
-  - [] Read All
-  - [] Read Row 
-    - []  where (rowid  || index => value)
+  - [x] Read All
+  - [x] Read Row 
+    - [x] where index 
+    - [x] where col => value
   - [] Update 
   - [] Update Row Where 
   - [] Delete Row
   - [] Helpers 
     - [] Load CSV, Save CSV, Get Difference, Paginate
+    - [] Get row id
