@@ -6,7 +6,10 @@ class CsvCrud():
     def __init__(self, fpath):
 
         self.row_id = 0
-        self.df = self.load(fpath)
+        # self.df: list = self.load(fpath)
+        self.df= self.load(fpath)
+
+        self.count = len(self.df)
 
     def create(self, row):
 
@@ -23,13 +26,10 @@ class CsvCrud():
 
         def read_where(key, value):
             return self.df[self.df[key].isin([value])]
-
         if where:
             # This is kinda long winded
             return read_where(next(iter(where)), next(iter(where.items()))[1])
-
         else:
-
             return self.df
 
     def get_id(self, row):
@@ -46,9 +46,10 @@ class CsvCrud():
 
         print(f"Loading data")
         self.fpath = fpath
+        # self.df = pandas.DataFrame(data=pandas.read_csv(fpath))
+        # return list()
         return pandas.DataFrame(data=pandas.read_csv(fpath))
 
     def save(self,custom_name = False):
-
-        self.df.to_csv(self.fpath, mode='w') #  index=False
+        self.df.to_csv(self.fpath, mode='w',index=False) #  index=False
 
